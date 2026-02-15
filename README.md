@@ -36,6 +36,43 @@ This repository showcases an **end-to-end analytics solution built with Microsof
 ## Architecture
 **Flow:** Daily CSV → Lakehouse (OneLake) → Spark transformations (Delta) → Star Schema → Power BI
 
+## Medallion Architecture (Bronze / Silver / Gold)
+
+This project follows a **Medallion Architecture** pattern to structure the analytics lifecycle:
+
+**Raw CSV (daily sales files)**
+→ **Bronze (Lakehouse - Raw)**
+→ **Silver (Lakehouse - Clean/Curated)**
+→ **Gold (Warehouse - Star Schema)**
+→ Semantic Model
+→ Power BI
+
+### Bronze (Raw)
+**Purpose:** ingest data exactly as received (append-only), preserve lineage and enable reprocessing.  
+**Where in this repo / Fabric:** Lakehouse raw zone (e.g., `raw/orders/`) containing daily CSV files such as:
+- `data/sample/orders_2026-01-01.csv`
+
+Typical table / folder:
+- `sales_orders_raw` (raw ingestion)
+
+### Silver (Clean / Curated)
+**Purpose:** clean and standardize the raw data into a consistent, analytics-ready format.  
+Includes:
+- schema enforcement and type casting (dates, numeric fields)
+- basic data quality checks (nulls, duplicates, invalid rows)
+- standardized columns and business logic preparation
+
+Typical table:
+- `sales_orders_clean` (cleaned Delta table)
+
+### Gold (Business-ready)
+**Purpose:** deliver business-friendly tables optimized for BI and analytics.  
+In this project, the **Gold layer is the Warehouse modeled as a Star Schema**:
+- `FactSales`
+- `DimProduct`
+- `DimDate`
+- `DimChannel`
+
 ---
 
 ## Data Model (Star Schema)
@@ -133,6 +170,45 @@ Ce dépôt présente une **solution analytique de bout en bout développée avec
 - `notebooks/` → notebooks Spark (transformation + validation)
 - `sql/` → scripts SQL (staging / SCD / requêtes)
 - `powerbi/screenshots/` → captures Power BI
+
+## Architecture Medallion (Bronze / Silver / Gold)
+
+Ce projet suit une **architecture Medallion** (Bronze/Silver/Gold) pour organiser le cycle de vie des données :
+
+**CSV bruts (ventes quotidiennes)**
+→ **Bronze (Lakehouse - Raw)**
+→ **Silver (Lakehouse - Clean/Curated)**
+→ **Gold (Warehouse - Star Schema)**
+→ Modèle sémantique
+→ Power BI
+
+### Bronze (Raw)
+**Objectif :** ingérer les données telles quelles (append-only), conserver la traçabilité et permettre le retraitement.  
+**Dans Fabric / dans ce repo :** zone raw du Lakehouse (ex : `raw/orders/`) avec les CSV quotidiens, par exemple :
+- `data/sample/orders_2026-01-01.csv`
+
+Table / dossier typique :
+- `sales_orders_raw`
+
+### Silver (Clean / Curated)
+**Objectif :** nettoyer et standardiser les données afin d’obtenir un format cohérent prêt pour l’analyse.  
+Contient :
+- typage et normalisation (dates, numériques)
+- contrôles qualité (valeurs nulles, doublons, lignes invalides)
+- colonnes standardisées et logique métier de base
+
+Table typique :
+- `sales_orders_clean` (table Delta nettoyée)
+
+### Gold (Business-ready)
+**Objectif :** produire des tables orientées métier, optimisées pour la BI.  
+Dans ce projet, la couche **Gold correspond au Warehouse en schéma en étoile** :
+- `FactSales`
+- `DimProduct`
+- `DimDate`
+- `DimChannel`
+
+
 
 ---
 
