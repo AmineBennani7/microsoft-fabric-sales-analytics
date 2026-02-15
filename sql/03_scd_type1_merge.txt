@@ -1,0 +1,32 @@
+/* Clean staging */
+TRUNCATE TABLE products_staging;
+TRUNCATE TABLE channel_staging;
+
+/* Load staging (demo simulation) */
+INSERT INTO products_staging VALUES
+('P002', 'T-Shirt Homme Premium Fit', 'Luxury Apparel'),
+('P999', 'New Product Demo', 'New Category');
+
+INSERT INTO channel_staging VALUES
+('WEB'),
+('MOBILE'),
+('STORE');
+
+/* SCD Type 1 — DimProduct */
+MERGE INTO DimProduct AS target
+USING products_staging AS source
+ON target.product_id = source.product_id
+WHEN MATCHED THEN
+    UPDATE SET
+        target.product_name = source.product_name,
+        target.product_category = source.product_category
+WHEN NOT MATCHED THEN
+    INSERT (product_id, product_name, product_category)
+    VALUES (source.product_id, source.product_name, source.product_category);
+
+/* SCD Type 1 — DimChannel */
+MERGE INTO DimChannel AS target
+USING channel_staging AS source
+ON target.channel = source.channel
+WHEN NOT MATCHED THEN
+    INSERT (channel) VALUES (source.channel);

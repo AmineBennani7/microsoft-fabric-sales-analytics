@@ -1,0 +1,3 @@
+SELECT * 
+FROM DimProduct
+WHERE product_id = 'P002';

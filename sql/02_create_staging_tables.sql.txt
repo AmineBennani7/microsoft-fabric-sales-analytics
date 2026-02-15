@@ -1,0 +1,9 @@
+CREATE TABLE products_staging (
+    product_id VARCHAR(10),
+    product_name VARCHAR(100),
+    product_category VARCHAR(50)
+);
+
+CREATE TABLE channel_staging (
+    channel VARCHAR(50)
+);

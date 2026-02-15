@@ -1,0 +1,17 @@
+order_id,order_datetime,order_date,product_id,product_name,product_category,quantity,unit_price,revenue,channel
+O000001,2026-01-01 10:01:00,2026-01-01,P012,Baskets Lifestyle Leather,Footwear,1,130,130,WEB
+O000002,2026-01-01 11:58:00,2026-01-01,P010,Sneakers Street Classic,Footwear,2,95,190,WEB
+O000003,2026-01-01 19:52:00,2026-01-01,P016,Casquette Logo Brodé,Accessories,1,30,30,WEB
+O000004,2026-01-01 20:44:00,2026-01-01,P003,T-Shirt Femme Classic,Apparel,3,28,84,WEB
+O000005,2026-01-01 18:32:00,2026-01-01,P015,Sac de Sport Weekender 35L,Accessories,1,75,75,MOBILE
+O000006,2026-01-01 14:30:00,2026-01-01,P006,Sweatshirt Crewneck,Apparel,2,55,110,MOBILE
+O000007,2026-01-01 16:10:00,2026-01-01,P005,Hoodie Unisexe Pullover,Apparel,2,60,120,MOBILE
+O000008,2026-01-01 16:11:00,2026-01-01,P017,Bonnet Unisexe Hiver,Accessories,3,22,66,WEB
+O000009,2026-01-01 19:25:00,2026-01-01,P005,Hoodie Unisexe Pullover,Apparel,2,60,120,WEB
+O000010,2026-01-01 20:47:00,2026-01-01,P017,Bonnet Unisexe Hiver,Accessories,2,22,44,WEB
+O000011,2026-01-01 10:24:00,2026-01-01,P002,T-Shirt Homme Premium Fit,Apparel,3,35,105,WEB
+O000012,2026-01-01 08:41:00,2026-01-01,P002,T-Shirt Homme Premium Fit,Apparel,2,35,70,WEB
+O000013,2026-01-01 16:16:00,2026-01-01,P003,T-Shirt Femme Classic,Apparel,1,28,28,MOBILE
+O000014,2026-01-01 21:57:00,2026-01-01,P008,Pantalon Jogging Unisexe,Apparel,2,45,90,MOBILE
+O000015,2026-01-01 15:51:00,2026-01-01,P007,Veste Légère Mi-Saison,Apparel,3,90,270,MOBILE
+O000016,2026-01-01 12:10:00,2026-01-01,P013,Sandales Été Confort,Footwear,1,50,50,MOBILE

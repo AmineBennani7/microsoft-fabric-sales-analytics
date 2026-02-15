@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS products_staging;
+DROP TABLE IF EXISTS channel_staging;
