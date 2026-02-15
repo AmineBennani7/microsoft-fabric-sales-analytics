@@ -83,12 +83,17 @@ The pipeline orchestrates the processing workflow:
 ---
 
 ## SQL Layer (Warehouse + SCD)
-The `sql/` folder contains SQL scripts used to:
-- reset / create staging tables
-- implement merge logic (e.g., **SCD Type 1**)
-- run demo / validation queries
 
-This demonstrates practical data warehousing patterns (staging, merges, analytical modeling).
+The `sql/` folder contains the Warehouse logic used to load and maintain dimensions using **Slowly Changing Dimensions (SCD)** patterns.
+
+### SCD implementations
+
+| Dimension | Type | Goal | Where | How it works |
+|---|---:|---|---|---|
+| `DimChannel` | **SCD Type 1** | Keep the latest channel values | Warehouse | `MERGE` into the dimension (overwrite / insert if new) |
+| `DimProduct_SCD2` | **SCD Type 2** | Track full history of product attributes (e.g., category changes) | Warehouse | Close current row (`end_date`, `is_current=0`) and insert a new version (`start_date`, `is_current=1`) |
+
+
 
 ---
 
@@ -197,10 +202,18 @@ Le pipeline orchestre le traitement quotidien :
 ---
 
 ## Couche SQL (Warehouse + SCD)
-Le dossier `sql/` contient des scripts pour :
-- créer / réinitialiser les tables de staging
-- implémenter des merges (ex : **SCD Type 1**)
-- exécuter des requêtes de démonstration / validation
+
+Le dossier `sql/` contient la logique Warehouse utilisée pour charger et maintenir les dimensions via des patterns **SCD (Slowly Changing Dimensions)**.
+
+### Implémentations SCD
+
+| Dimension | Type | Objectif | Où | Principe |
+|---|---:|---|---|---|
+| `DimChannel` | **SCD Type 1** | Conserver uniquement l’état le plus récent | Warehouse | `MERGE` dans la dimension (écrasement / insertion si nouveau) |
+| `DimProduct_SCD2` | **SCD Type 2** | Conserver l’historique complet (ex : changement de catégorie produit) | Warehouse | Fermeture de la ligne courante (`end_date`, `is_current=0`) puis insertion d’une nouvelle version (`start_date`, `is_current=1`) |
+
+
+
 
 ---
 
