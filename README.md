@@ -27,7 +27,7 @@ The pipeline orchestrates ingestion + transformations + Warehouse steps.
 
 ![Pipeline Run Success](fabric-pipeline/screenshots/pipeline_run_success.png)
 
-![Pipeline SQL Step](fabric-pipeline/screenshots/pipeline_scd_script.png)
+![Pipeline SQL Step](fabric-pipeline/screenshots/pipeline_scd_daily.png)
 
 ## Warehouse (SQL) — SCD
 Dimensions are maintained using SCD patterns:
