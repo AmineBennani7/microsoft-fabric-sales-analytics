@@ -248,5 +248,23 @@ Exemples d’indicateurs visibles dans les dashboards :
 - **Microsoft Fabric** (OneLake, Lakehouse, Pipelines)
 - **Apache Spark / PySpark**
 - **Delta Lake**
-- **SQL**
+-  **SQL**
 - **Power BI**
+
+  ---
+
+## Limites actuelles 
+
+Ce dépôt est une **démo production-like** : il illustre l’architecture, le pipeline Fabric, le modèle en étoile et les dashboards Power BI, mais il ne représente pas encore une chaîne d’exploitation complète en continu.
+
+### Pourquoi c’est encore une démo
+- **Données d’entrée simulées** : les CSV sont des *samples* (ajoutés manuellement pour la démonstration).
+- **Alimentation non garantie au quotidien** : le pipeline n’est pas  déclenché par une arrivée automatique de fichiers chaque jour.
+
+### À quoi ressemblerait une version 100% professionnelle dans Fabric
+- **Ingestion automatique** depuis une source stable (par ex. un dossier OneLake recevant `orders_YYYY-MM-DD.csv`, un stockage externe type ADLS/S3, ou une API/SaaS).  
+- **Orchestration planifiée** : pipeline déclenché par un **schedule daily** ou un trigger “arrival-based”, avec un paramètre `run_date` et une exécution **idempotente** (pas de doublons si relancé).
+- **Traitements incrémentaux** : Bronze append-only, Silver avec nettoyage/dédoublonnage, Gold alimenté de façon incrémentale (éviter le full refresh systématique).
+
+
+
